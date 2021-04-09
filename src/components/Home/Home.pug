@@ -1,2 +1,46 @@
-.row
-  | asdad
+.container-users.column.justify-center
+  .column.wrap.full
+    v-container
+      v-card
+        v-card-title
+          v-text-field(
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details 
+          )
+        
+        v-data-table(
+          :headers="headers"
+          :items="items"
+          :search="search"
+          :items-per-page="10"
+          class="elevation-1"
+          loading
+          loading-text="Carregando..."
+        )
+
+          template(v-slot:item.actions="{ item }")
+            .row.text-center.justify-center
+              v-icon(
+                style="flex-grow: 0.06"
+                small
+                class="mr-2"
+                @click="editItem"
+              ) mdi-pencil
+              
+              v-icon(
+                small
+                @click="deleteItem(item)"
+              ) mdi-delete
+
+
+
+  // removendo certificate
+  dialog-edit-user(
+    :dialogStatus="showDialogEditUser"
+    @closeDialog="showDialogEditUser = false"
+  )
+    template(slot="title") title
+    template(slot="text") body
