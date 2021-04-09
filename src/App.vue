@@ -1,5 +1,7 @@
 <template lang="pug">
-  #app
+  #app(
+    data-app
+  )
     router-view
 </template>
 

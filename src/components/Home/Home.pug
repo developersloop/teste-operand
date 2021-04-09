@@ -27,7 +27,7 @@
                 style="flex-grow: 0.06"
                 small
                 class="mr-2"
-                @click="editItem"
+                @click="editItem(item)"
               ) mdi-pencil
               
               v-icon(
@@ -37,10 +37,9 @@
 
 
 
-  // removendo certificate
+  // editar usuário
   dialog-edit-user(
     :dialogStatus="showDialogEditUser"
     @closeDialog="showDialogEditUser = false"
   )
-    template(slot="title") title
-    template(slot="text") body
+    template(slot="title") Editar Usuário

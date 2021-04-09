@@ -22,6 +22,12 @@ export default {
           filterable: true, 
         },
         { 
+          text: 'Email', 
+          align: 'center',
+          value: 'email',
+          filterable: true,
+        },
+        { 
           text: 'Username', 
           align: 'center',
           value: 'username',
@@ -44,12 +50,14 @@ export default {
           id: 1,
           name: 'Regia',
           lastname: 'mikaelle',
+          email: 'regia@hotmail.com',
           username: 'mika'
         },
         {
           id: 2,
           name: 'Vitor',
           lastname: 'Vicente',
+          email: 'vitor@hotmail.com',
           username: 'loop'
         },
       ]  
