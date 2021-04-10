@@ -50,15 +50,15 @@ export default {
   },
   methods: {
     initialize () {
-      this.items = [
-        {
-          id: 1,
-          name: 'user',
-          lastname: 'teste',
-          email: 'user.teste@hotmail.com',
-          username: 'userTeste'
-        },
-      ]  
+      // this.items = [
+      //   {
+      //     id: 1,
+      //     name: 'user',
+      //     lastname: 'teste',
+      //     email: 'user.teste@hotmail.com',
+      //     username: 'userTeste'
+      //   },
+      // ]  
     },
     addItem () {
       this.item = {}
