@@ -1,16 +1,27 @@
 .container-users.column.justify-center
   .column.wrap.full
     v-container
+      .row.no-wrap.justify-end(style="margin: 8px")
+        v-btn(
+          class="mx-2"
+          fab
+          dark
+          small
+          @click="addItem"
+        )
+          v-icon(
+            dark
+          ) mdi-plus
       v-card
         v-card-title
-          v-text-field(
-            v-model="search"
-            append-icon="mdi-magnify"
-            label="Search"
-            single-line
-            hide-details 
-          )
-        
+           v-text-field(
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details 
+            ) 
+                  
         v-data-table(
           :headers="headers"
           :items="items"
@@ -38,8 +49,19 @@
 
 
   // editar usuário
-  dialog-edit-user(
-    :dialogStatus="showDialogEditUser"
-    @closeDialog="showDialogEditUser = false"
+  dialog-edit-add-user(
+    :dialogStatus="showDialogAddEditUser"
+    :item="item"
+    @save="saveItem"
+    @closeDialog="showDialogAddEditUser = false"
   )
-    template(slot="title") Editar Usuário
+
+  // remover usuário
+  dialog-delete-confirmation(
+    :dialogStatus="showDialogDeleteUser"
+    :item="item"
+    @confirm="removeItem"
+    @closeDialog="showDialogDeleteUser = false"
+  )
+    template(slot="title") Exclusão
+    template(slot="text") Deseja remover este Usuário?

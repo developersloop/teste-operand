@@ -7,7 +7,7 @@
     v-card
       v-card-title
         span.headline
-          slot(name="title")
+          | {{ getTitle }}
       v-card-text
         v-container
           v-row
@@ -17,7 +17,7 @@
               md="6"
             )
               v-text-field(
-                v-model="user.name"
+                v-model="model.name"
                 label="Name"
               )
             v-col(
@@ -26,7 +26,7 @@
               md="6"
             )
               v-text-field(
-                v-model="user.lastname"
+                v-model="model.lastname"
                 label="Lastname"
               )
           v-row
@@ -36,7 +36,7 @@
               md="6"
             )
               v-text-field(
-                v-model="user.email"
+                v-model="model.email"
                 label="Email"
               )
             v-col(
@@ -45,7 +45,7 @@
               md="6"
             )
               v-text-field(
-                v-model="user.name"
+                v-model="model.username"
                 label="Username"
               )
       v-card-actions
@@ -65,21 +65,42 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
-  name: 'DialogEditUser',
+  name: 'DialogEditAddUser',
   data () {
     return {
       visible: false,
-      user: {}
+      model: {},
+      method: null
     }
   },
   props: {
-    dialogStatus: { type: Boolean }
+    dialogStatus: { type: Boolean },
+    item: { type: Object, required: true },
+  },
+  watch: {
+    item: {
+      immediate: true,
+      handler (value) {
+        if (value) this.model = { ...this.item }
+      },
+      deep: true
+    }
+  },
+  computed: {
+    getTitle () {
+      return  _.isEmpty(this.item) ? 'Adicionar usuário' : 'Editar usuário'
+    }
   },
   methods: {
     save () {
-
+      const method = _.isEmpty(this.item) 
+        ? 'add' 
+        : 'edit'
+        
+      this.$emit('save',{ model: this.model, method, })
     }
-  }
+  },
 }
 </script>
