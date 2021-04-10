@@ -45,6 +45,7 @@ export default {
       ],
       items: [],
       item: {},
+      count: 0,
     }
   },
   methods: {
@@ -52,17 +53,10 @@ export default {
       this.items = [
         {
           id: 1,
-          name: 'Regia',
-          lastname: 'mikaelle',
-          email: 'regia@hotmail.com',
-          username: 'mika'
-        },
-        {
-          id: 2,
-          name: 'Vitor',
-          lastname: 'Vicente',
-          email: 'vitor@hotmail.com',
-          username: 'loop'
+          name: 'user',
+          lastname: 'teste',
+          email: 'user.teste@hotmail.com',
+          username: 'userTeste'
         },
       ]  
     },
@@ -80,7 +74,11 @@ export default {
     },
     saveItem (item) {
       if (item.method === 'edit') this.items = this.items.map(it => (it.id === item.model.id) ? item.model : it)
-      else this.items.push(item.model)
+      else {
+        item.model.id = ++this.count
+        console.log(item.model)
+        this.items.push(item.model)
+      }
       this.showDialogAddEditUser = false
     },
     removeItem () {
